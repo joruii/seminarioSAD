@@ -1,0 +1,1 @@
+He tenido que cambiar la ruta de python desde visual studio code con zmq config set python "C:\Python39\python.exe"
