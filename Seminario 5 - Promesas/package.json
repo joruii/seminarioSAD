@@ -1,0 +1,17 @@
+{
+  "name": "seminario-5-promesas",
+  "version": "1.0.0",
+  "description": "Actividad seminario 5 promesas",
+  "main": "Carrito_REST.js",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongodb": "^3.6.3",
+    "mongoose": "^5.11.12"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "node ./Carrito_REST.js 3000"
+  },
+  "author": "",
+  "license": "ISC"
+}
