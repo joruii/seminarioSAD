@@ -50,24 +50,24 @@ cliente.on('message', function() { // (idCliente, tipoTrabajo,idProducto, cantid
   console.log(carritos[identificadorCliente]);
 
     if(tipoTrabajo == 5){//Pide eliminar un carrito
-      if(carritoCreado[identificadorCliente] == 1){
+      if(carritoCreado[identificadorCliente] == 1){ //Si el carrito SI existe se elimina
       delete carritos[identificadorCliente];
       carritoCreado[identificadorCliente] = 0;
       cliente.send([identificadorCliente,"Carrito Eliminado"])
-      }else{
+      }else{ //Si el carrito NO existe, se le notifica al cliente
         cliente.send([identificadorCliente, "Primero tienes que crear un carrito con '/actividad6/crear'"]);
       }
     }
     else{ //NO pide eliminar un carrito
     if(args.length == 3){ //Si solicita un GET del carrito
-      if(carritoCreado[identificadorCliente] == 1){
+      if(carritoCreado[identificadorCliente] == 1){//Si el carrito SI existe se le envia al cliente
       cliente.send([identificadorCliente, JSON.stringify(carritos[identificadorCliente])]);
       }
-      else{
+      else{//Si el carrito NO existe, se le notifica al cliente
         cliente.send([identificadorCliente, "Primero tienes que crear un carrito con '/actividad6/crear'"]);
       }
     }
-    else{
+    else{ //Si NO solicita un GET del carrito
       if (args.length == 2){//Si pide crear un carrito
         if(carritoCreado[identificadorCliente] == 0 || carritoCreado[identificadorCliente] == undefined){
           let carritoAUX = new Array();
@@ -78,10 +78,10 @@ cliente.on('message', function() { // (idCliente, tipoTrabajo,idProducto, cantid
           cliente.send([identificadorCliente, "Carrito ya creado!!"]);
         }
       }
-      else{
-        if(carritoCreado[identificadorCliente] == 0 || carritoCreado[identificadorCliente] == undefined){
+      else{//Si pide alguna accion de añadir o eliminar
+        if(carritoCreado[identificadorCliente] == 0 || carritoCreado[identificadorCliente] == undefined){//Si el carrito NO existe, se le notifica al cliente
           cliente.send([identificadorCliente, "Primero tienes que crear un carrito con '/actividad6/crear'"]);
-        }else{
+        }else{//SI el carrito SI existe
         if(tipoTrabajo == 0){//Si pide añadir productos
           console.log("Ha pedido añadir " + cantidadProducto+ " unidades del producto " + idProducto + "\n");
         }
@@ -110,17 +110,16 @@ worker.on('message', function() { // (idWorker,idCliente,carrito)
   if (argumentos.length == 2) {//El worker avisa de que ha llegado
     workers.push(idWorker);
   
-  if (peticiones.length > 0){ //No había workers disponibles y se almacenó una peticion de un cl
-    let args = peticiones.shift();
-    let identificadorCliente = args[0];
-    let tipoTrabajo = parseInt(args[1]);
-    let idProducto = parseInt(args[2]);
-    let cantidadProducto = parseInt(args[3]);
-    aEnviar = new CarritoAux(carritos[identificadorCliente], tipoTrabajo, idProducto, cantidadProducto);
-    worker.send([workers.shift(),identificadorCliente,JSON.stringify(aEnviar)]);
-  }
-  }else {
-
+    if (peticiones.length > 0){ //No había workers disponibles y se almacenó una peticion de un cliente
+      let args = peticiones.shift();
+      let identificadorCliente = args[0];
+      let tipoTrabajo = parseInt(args[1]);
+      let idProducto = parseInt(args[2]);
+      let cantidadProducto = parseInt(args[3]);
+      aEnviar = new CarritoAux(carritos[identificadorCliente], tipoTrabajo, idProducto, cantidadProducto);
+      worker.send([workers.shift(),identificadorCliente,JSON.stringify(aEnviar)]);
+    }
+  }else { //Nos llega una respuesta de un WORKER
     var argumentosParseados = JSON.parse(argumentosEnvia[1]);
     carritos[argumentosEnvia[0]] = argumentosParseados.carro;
     cliente.send([argumentosEnvia[0],JSON.stringify(argumentosParseados.carro) ]);

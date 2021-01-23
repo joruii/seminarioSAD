@@ -87,7 +87,6 @@ service.post('/actividad6/:operacion/:idProducto/:cantidad', (req, res, next) =>
                 console.log("Mensaje " + mensaje);
                 res.send(mensaje); res.end();
         },3000);
-}
 });      
 
 service.delete('/actividad6/:operacion/:idProducto', (req, res, next) => {
