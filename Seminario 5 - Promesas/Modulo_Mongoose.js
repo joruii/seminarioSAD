@@ -21,8 +21,8 @@ exports.insertarProductos = () => {
 
 	const db = mongoose.connection;
 	db.on('error', console.error.bind(console, 'connection error:'));
-	db.once('open', function() {
-	});
+//	db.once('open', function() {
+//	});
 
 	//para eliminar los productos del carrito antes de insertarlos
 	Productos.remove()
@@ -105,8 +105,6 @@ exports.compruebaStock = function(elemento,callback){
 	mongoose.connect('mongodb+srv://root:1234@clustersad.k9fmv.mongodb.net/mydb?retryWrites=true&w=majority');
 	const db = mongoose.connection;
 	db.on('error', console.error.bind(console, 'connection error:'));
-	db.once('open', function() {
-	});
 
 	puedeInsertar = false;
 	var llave = elemento.key;
@@ -120,7 +118,7 @@ exports.compruebaStock = function(elemento,callback){
 				puedeInsertar= true;
 				callback(puedeInsertar);
 			}else{
-				console.log("El producto " +elemento.key+": " + elemento.description + " no puede añadirse ya que no existe en la base o no hay stock suficiente\n(Stock menor a "+elemento.cantidad+")\n");
+				console.log("El producto " +elemento.key+": " + elemento.description + " no puede añadirse ya que no hay stock suficiente\n(Stock menor a "+elemento.cantidad+")\n");
 				puedeInsertar= false;
 				callback(puedeInsertar);
 			}

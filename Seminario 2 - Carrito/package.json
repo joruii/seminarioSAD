@@ -1,0 +1,15 @@
+{
+  "name": "seminario2carrito",
+  "version": "1.0.0",
+  "description": "Carrito",
+  "main": "Carrito.js",
+  "dependencies": {
+    "mongodb": "^3.6.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "node Carrito.js"
+  },
+  "author": "Jesús Yáñez",
+  "license": "ISC"
+}
