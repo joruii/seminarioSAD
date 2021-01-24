@@ -3,6 +3,7 @@ const express = require('express');
 const service = express();
 const port = process.argv[2];
 
+Cliente.insertarProductos(()=>{console.log("Documentos insertados!");});
 var existe;
 
 // GET

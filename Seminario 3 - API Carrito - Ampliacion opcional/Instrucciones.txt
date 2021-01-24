@@ -1,0 +1,8 @@
+1.- Ejecutar en la carpeta /bin'node run' 
+
+2.- A través de Postman realizar llamadas GET, POST y DELETE a la dirección localhost:3000, con una sintaxis como la siguiente:
+
+POST http://localhost:3000/carrito/1/5 --> Añadir 5 elementos del tipo 1 (palos)
+DELETE http://localhost:3000/carrito/1 --> Eliminar el elemento 1
+
+Todas las llamadas devuelven el carrito resultante.

@@ -21,8 +21,7 @@ exports.insertarProductos = () => {
 
 	const db = mongoose.connection;
 	db.on('error', console.error.bind(console, 'connection error:'));
-//	db.once('open', function() {
-//	});
+
 
 	//para eliminar los productos del carrito antes de insertarlos
 	Productos.remove()

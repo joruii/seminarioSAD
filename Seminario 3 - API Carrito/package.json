@@ -1,0 +1,16 @@
+{
+  "name": "seminario3-api.carrito",
+  "version": "1.0.0",
+  "description": "Version REST de la aplicacion carrito",
+  "main": "Modulo_Mongo.js",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongodb": "^3.6.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
